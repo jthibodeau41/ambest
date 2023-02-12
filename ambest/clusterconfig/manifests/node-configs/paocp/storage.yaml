@@ -1,0 +1,61 @@
+
+apiVersion: machine.openshift.io/v1beta1
+kind: MachineSet
+metadata:
+  creationTimestamp: null
+  labels:
+    machine.openshift.io/cluster-api-cluster: e7ocpcluster1-2vzcc
+  name: e7ocpcluster1-2vzcc-storage
+  namespace: openshift-machine-api
+  annotations:
+    argocd.argoproj.io/sync-wave: "-5"
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      machine.openshift.io/cluster-api-cluster: e7ocpcluster1-2vzcc
+      machine.openshift.io/cluster-api-machineset: e7ocpcluster1-2vzcc-storage
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        machine.openshift.io/cluster-api-cluster: e7ocpcluster1-2vzcc
+        machine.openshift.io/cluster-api-machine-role: infrastructure
+        machine.openshift.io/cluster-api-machine-type: infrastructure
+        machine.openshift.io/cluster-api-machineset: e7ocpcluster1-2vzcc-storage
+    spec:
+      metadata:
+        creationTimestamp: null
+        labels:
+          node-role.kubernetes.io/worker: ""
+          node-role.kubernetes.io/infra: ""
+          cluster.ocs.openshift.io/openshift-storage: ""
+      taints:
+      - effect: NoSchedule
+        key: node.ocs.openshift.io/storage
+        value: "true"
+      providerSpec:
+        value:
+          numCoresPerSocket: 2
+          diskGiB: 120
+          snapshot: ''
+          userDataSecret:
+            name: worker-user-data
+          memoryMiB: 32768
+          credentialsSecret:
+            name: vsphere-cloud-credentials
+          network:
+            devices:
+              - networkName: E7VIRT_MGMT
+          metadata:
+            creationTimestamp: null
+          numCPUs: 10
+          kind: VSphereMachineProviderSpec
+          workspace:
+            datacenter: PaaSTest
+            datastore: e7vmw6esx_ds02
+            folder: /PaaSTest/vm/e7ocpcluster1-2vzcc
+            resourcePool: /PaaSTest/host/e7vmw6esxi/Resources
+            server: e7vmw6vic01.datalinklabs.local
+          template: e7ocpcluster1-2vzcc-rhcos
+          apiVersion: machine.openshift.io/v1beta1
