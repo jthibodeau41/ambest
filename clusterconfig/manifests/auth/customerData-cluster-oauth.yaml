@@ -1,0 +1,24 @@
+apiVersion: config.openshift.io/v1
+kind: OAuth
+metadata:
+  name: cluster
+spec:
+   identityProviders:
+    - ldap:
+        attributes:
+          id:
+            - sAMAccountName
+          name:
+            - cn
+          preferredUsername:
+            - sAMAccountName
+        bindDN: <LDAP Bind DN>
+        bindPassword:
+          name: ldap-bind-password-c6d4t
+        ca:
+          name: ''
+        insecure: true
+        url: ldap://<LDAPURL>?sAMAccountName?sub?(&(memberOf:1.2.840.113556.1.4.1941:=<OCP Users Group>)(objectClass=person)(!(userAccountControl:1.2.840.113556.1.4.803:=2)))
+      mappingMethod: claim
+      name: AD
+      type: LDAP
