@@ -4,5 +4,5 @@ kind: Kustomization
 namespace: openshift-gitops
 
 resources:
-- openshift1-appproj.yaml
-- openshift1-cluster-config-app.yaml
+- njocp-appproj.yaml
+- njocp-cluster-config-app.yaml

@@ -7,8 +7,8 @@ spec:
     name: paocp
   project: paocp
   source:
-    path: clusterconfig/aggregates/pa-cluster-config
-    repoURL: 
+    path: clusterconfig/aggregates/paocp-cluster-config
+    repoURL: https://e7rock6fit01.datalinklabs.local/jamie.thibodeau/ambest2
     targetRevision: master
   syncPolicy:
     automated:

@@ -8,3 +8,4 @@ bases:
 - ../../manifests/ldapsync
 - ../../manifests/node-configs/njocp
 - ../../manifests/registry/overlays/rwo
+- ../../manifests/smbcsi

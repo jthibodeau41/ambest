@@ -8,3 +8,5 @@ resources:
 - placement-all.yaml
 - placement-ocp.yaml
 - placement-hub.yaml
+- gitopscluster.yaml
+- managedclusterset.yaml

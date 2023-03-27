@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
- name: njocp-cluster-config
+ name: njocp-config
 spec:
   destination:
-    name: njocp
+    name: local-cluster
   project: njocp
   source:
     path: clusterconfig/aggregates/njocp-cluster-config
-    repoURL: 
+    repoURL: https://e7rock6fit01.datalinklabs.local/jamie.thibodeau/ambest2
     targetRevision: master
   syncPolicy:
     automated:
